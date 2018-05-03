@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@android:color/white">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/shot_image"
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            tools:background="@drawable/shot_placeholder"
+            fresco:placeholderImage="@drawable/shot_placeholder"
+            fresco:placeholderImageScaleType="centerCrop"
+            fresco:actualImageScaleType="centerCrop"/>
+
+        <TextView
+            android:id="@+id/project_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_xsmall"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimary"
+            tools:text="@string/project_name"/>
+
+        <View
+            android:background="#e3e8e8"
+            android:layout_width="20dp"
+            android:layout_height="1dp"
+            android:layout_margin="@dimen/spacing_xsmall"/>
+
+        <TextView
+            android:id="@+id/project_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:layout_margin="@dimen/spacing_xsmall"
+            tools:text="@string/project_field"/>
+
+        <View
+            android:background="#e3e8e8"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_margin="@dimen/spacing_xsmall"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/list_shot_detail_bar_height">
+
+            <TextView
+                android:id="@+id/shot_view_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/spacing_xsmall"
+                android:layout_marginRight="@dimen/spacing_large"
+                android:drawableLeft="@drawable/ic_visibility_black_24dp"
+                android:drawablePadding="@dimen/spacing_xsmall"
+                tools:text="12"/>
+
+            <TextView
+                android:id="@+id/shot_like_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/shot_view_count"
+                android:layout_marginRight="@dimen/spacing_large"
+                android:drawableLeft="@drawable/ic_favorite_black_24dp"
+                android:drawablePadding="@dimen/spacing_xsmall"
+                tools:text="78"/>
+
+            <TextView
+                android:id="@+id/shot_comment_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/shot_like_count"
+                android:drawableLeft="@drawable/ic_comment_black_24dp"
+                android:drawablePadding="@dimen/spacing_xsmall"
+                tools:text="80"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/shot_clickable_cover"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:background="?attr/selectableItemBackground"/>
+
+</android.support.v7.widget.CardView>

@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Behance</string>
+    <string name="text_nearby">Nearby</string>
+    <string name="text_discover">Discover</string>
+    <string name="text_buckets">Buckets</string>
+    <string name="discover_field">Discover fields page</string>
+    <string name="discover_follower">Discover followers</string>
+    <string name="view_pager_follower">POPULAR</string>
+    <string name="view_pager_fields">FIELDS</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="collection_activity_label">Collections</string>
+    <string name="buckets_activity_label">Buckets</string>
+    <string name="shot_image">Shot image</string>
+    <string name="project_name">Project name</string>
+    <string name="project_field">Project field</string>
+    <string name="share">Share</string>
+    <string name="comment_activity_title">Comments</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+</resources>

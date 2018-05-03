@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/spacing_medium"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/project_view_count"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/ic_visibility_black_24dp"
+            android:gravity="center"
+            tools:text="1000" />
+
+        <TextView
+            android:id="@+id/project_like_count"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/ic_favorite_black_24dp"
+            android:gravity="center"
+            tools:text="1000" />
+
+        <TextView
+            android:id="@+id/project_comment_count"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/ic_comment_black_24dp"
+            android:gravity="center"
+            android:clickable="true"
+            tools:text="1000" />
+
+        <TextView
+            android:id="@+id/project_share"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/ic_share_black_24dp"
+            android:gravity="center"
+            android:text="@string/share" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_large">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/shot_author_picture"
+            android:layout_width="@dimen/shot_author_picture_size"
+            android:layout_height="@dimen/shot_author_picture_size"
+            android:layout_marginRight="@dimen/spacing_medium"
+            tools:background="@drawable/user_picture_placeholder"
+            fresco:placeholderImage="@drawable/user_picture_placeholder"
+            fresco:roundAsCircle="true"/>
+
+        <TextView
+            android:id="@+id/shot_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/shot_author_picture"
+            android:layout_toRightOf="@id/shot_author_picture"
+            android:textColor="@android:color/black"
+            android:textSize="17sp"
+            tools:text="Shot title"/>
+
+        <TextView
+            android:id="@+id/shot_author_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/shot_title"
+            android:layout_alignLeft="@id/shot_title"
+            tools:text="Shot author"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/shot_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_small"
+
+        tools:text="Shot description\nShot description\nShot description\nShot description"/>
+
+</LinearLayout>
