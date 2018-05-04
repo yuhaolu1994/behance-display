@@ -14,7 +14,7 @@ public class ProjectDetailViewHolder extends BaseViewHolder {
     @BindView(R.id.project_view_count) TextView viewCount;
     @BindView(R.id.project_like_count) TextView likeCount;
     @BindView(R.id.project_comment_count) TextView commentCount;
-    @BindView(R.id.project_share) TextView share;
+    @BindView(R.id.project_bucket) TextView bucket;
     @BindView(R.id.shot_author_picture) SimpleDraweeView authorPicture;
     @BindView(R.id.shot_title) TextView title;
     @BindView(R.id.shot_author_name) TextView authorName;

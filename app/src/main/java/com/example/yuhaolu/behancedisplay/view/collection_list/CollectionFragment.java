@@ -32,7 +32,6 @@ public class CollectionFragment extends Fragment {
     private static String city;
 
     public static final String COLLECTION_FRAGMENT_VALUE = "Collection";
-    public static final int REQ_CODE_PROJECT = 100;
 
     private InfiniteAdapter.LoadMoreListener onLoadMore = new InfiniteAdapter.LoadMoreListener() {
         @Override

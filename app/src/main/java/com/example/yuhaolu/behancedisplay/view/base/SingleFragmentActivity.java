@@ -24,6 +24,7 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
+
         if (isBackEnabled()) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             setBackIcon();

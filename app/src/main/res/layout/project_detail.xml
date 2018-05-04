@@ -40,13 +40,13 @@
             tools:text="1000" />
 
         <TextView
-            android:id="@+id/project_share"
+            android:id="@+id/project_bucket"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:drawableTop="@drawable/ic_share_black_24dp"
+            android:drawableTop="@drawable/ic_inbox_black_24dp"
             android:gravity="center"
-            android:text="@string/share" />
+            android:text="@string/inbox" />
 
     </LinearLayout>
 

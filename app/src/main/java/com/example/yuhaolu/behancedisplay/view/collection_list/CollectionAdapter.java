@@ -3,14 +3,12 @@ package com.example.yuhaolu.behancedisplay.view.collection_list;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.yuhaolu.behancedisplay.R;
 import com.example.yuhaolu.behancedisplay.behance.Behance;
-import com.example.yuhaolu.behancedisplay.model.Comment_;
 import com.example.yuhaolu.behancedisplay.model.Project;
 import com.example.yuhaolu.behancedisplay.model.ProjectDetail;
 import com.example.yuhaolu.behancedisplay.utils.ImageUtils;
@@ -80,7 +78,7 @@ public class CollectionAdapter extends InfiniteAdapter<Project> {
             intent.putExtra(ProjectFragment.KEY_PROJECT,
                     ModelUtils.toString(projectDetail, new TypeToken<ProjectDetail>(){}));
             intent.putExtra(ProjectActivity.KEY_PROJECT_TITLE, projectDetail.name);
-            collectionFragment.startActivityForResult(intent, CollectionFragment.REQ_CODE_PROJECT);
+            collectionFragment.startActivity(intent);
         }
     }
 

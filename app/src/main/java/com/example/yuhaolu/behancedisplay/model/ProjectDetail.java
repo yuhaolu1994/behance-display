@@ -33,4 +33,8 @@ public class ProjectDetail {
     @SerializedName("description")
     @Expose
     public String description;
+
+    @SerializedName("url")
+    @Expose
+    public String url;
 }

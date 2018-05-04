@@ -3,30 +3,16 @@ package com.example.yuhaolu.behancedisplay.view.project_detail;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
 import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
 import android.support.v7.widget.RecyclerView;
-import android.text.Html;
 import android.text.TextUtils;
-import android.text.method.LinkMovementMethod;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.yuhaolu.behancedisplay.R;
-import com.example.yuhaolu.behancedisplay.behance.Behance;
-import com.example.yuhaolu.behancedisplay.model.Comment_;
-import com.example.yuhaolu.behancedisplay.model.Project;
 import com.example.yuhaolu.behancedisplay.model.ProjectDetail;
 import com.example.yuhaolu.behancedisplay.utils.ImageUtils;
-import com.example.yuhaolu.behancedisplay.utils.ModelUtils;
-import com.example.yuhaolu.behancedisplay.view.base.BehanceTask;
-import com.example.yuhaolu.behancedisplay.view.collection_list.CollectionFragment;
-import com.google.gson.reflect.TypeToken;
-
-import java.util.List;
 
 public class ProjectAdapter extends RecyclerView.Adapter {
 
@@ -58,7 +44,6 @@ public class ProjectAdapter extends RecyclerView.Adapter {
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         final int viewType = getItemViewType(position);

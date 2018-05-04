@@ -17,6 +17,8 @@
     <string name="project_field">Project field</string>
     <string name="share">Share</string>
     <string name="comment_activity_title">Comments</string>
+    <string name="inbox">Inbox</string>
+    <string name="share_project">Share project</string>
 
     <!-- TODO: Remove or change this placeholder text -->
 </resources>

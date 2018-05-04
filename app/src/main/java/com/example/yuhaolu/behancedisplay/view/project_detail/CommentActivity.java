@@ -10,7 +10,7 @@ public class CommentActivity extends SingleFragmentActivity {
 
     @NonNull
     @Override
-    protected String getActivityTitle() { return "Comments"; }
+    protected String getActivityTitle() { return getString(R.string.comment_activity_title); }
 
     @NonNull
     @Override
