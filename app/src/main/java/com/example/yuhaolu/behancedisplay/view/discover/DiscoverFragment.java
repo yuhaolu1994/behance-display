@@ -1,4 +1,4 @@
-package com.example.yuhaolu.behancedisplay.view;
+package com.example.yuhaolu.behancedisplay.view.discover;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -11,8 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.yuhaolu.behancedisplay.R;
-import com.example.yuhaolu.behancedisplay.view.discover_popular_creatives.DiscoverCreativesFragment;
-import com.example.yuhaolu.behancedisplay.view.discover_popular_fields.DiscoverFieldsFragment;
 
 public class DiscoverFragment extends Fragment {
 

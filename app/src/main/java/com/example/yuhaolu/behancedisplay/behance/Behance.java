@@ -77,7 +77,15 @@ public class Behance {
     public static List<Comment_> getComments(String id, int page) {
         String url = PROJECTS_END_POINT + "/" + id + "/comments?page=" + page + "&client_id=" + API_KEY;
         Comment comment = parseResponse(makeGetRequest(url), SHOT_COMMENT_TYPE);
-        Log.i("URL", url);
         return comment.comments;
     }
+
+    public static List<Project> getHomeProjects(String field) {
+        String url = PROJECTS_END_POINT  + "?field=" + field + "&page=1&sort=appreciations&client_id=" + API_KEY;
+        Shot shot = parseResponse(makeGetRequest(url), SHOT_LIST_TYPE);
+        Log.i("URL", url);
+        return shot.projects;
+    }
+
+
 }

@@ -1,4 +1,4 @@
-package com.example.yuhaolu.behancedisplay.view;
+package com.example.yuhaolu.behancedisplay.utils;
 
 import android.view.View;
 

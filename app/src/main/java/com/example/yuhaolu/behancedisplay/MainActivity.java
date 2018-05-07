@@ -16,11 +16,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.TextView;
 
-import com.example.yuhaolu.behancedisplay.view.DiscoverFragment;
-import com.example.yuhaolu.behancedisplay.view.DoubleClickBackToTop;
-import com.example.yuhaolu.behancedisplay.view.buckets_list.BucketsFragment;
+import com.example.yuhaolu.behancedisplay.utils.BottomNavigationViewHelper;
+import com.example.yuhaolu.behancedisplay.view.discover.DiscoverFragment;
+import com.example.yuhaolu.behancedisplay.utils.DoubleClickBackToTop;
+import com.example.yuhaolu.behancedisplay.view.buckets_list.BucketListFragment;
 import com.example.yuhaolu.behancedisplay.view.collection_list.CollectionFragment;
+import com.example.yuhaolu.behancedisplay.view.home.HomeFragment;
 
 import java.io.IOException;
 import java.util.List;
@@ -34,6 +37,7 @@ public class MainActivity extends AppCompatActivity
 
     @BindView(R.id.bottom_navigation) BottomNavigationView bottomNavigationView;
     @BindView(R.id.toolbar) Toolbar toolbar;
+    @BindView(R.id.toolbar_title) TextView toolbarTitle;
 
     private Fragment fragment;
     private String fragmentValue;
@@ -51,30 +55,39 @@ public class MainActivity extends AppCompatActivity
 
         setupBottomView();
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         // 也可以直接 new DoubleClickBackToTop.BackToContentTopView代替this
         toolbar.setOnClickListener(new DoubleClickBackToTop(this));
 
+
         if (savedInstanceState == null) {
 //            fragment = CollectionFragment.newInstance(CollectionFragment.COLLECTION_FRAGMENT_VALUE,
 //                    getCurrentCity());
-            fragment = DiscoverFragment.newInstance();
+            fragment = HomeFragment.newInstance();
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.fragment_container, fragment)
                     .commit();
+            toolbarTitle.setText(R.string.home_title);
         }
         checkLocationPermission();
     }
 
     private void setupBottomView() {
+        BottomNavigationViewHelper.removeShiftMode(bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         switch (item.getItemId()) {
+                            case R.id.action_home:
+                                fragment = HomeFragment.newInstance();
+                                toolbarTitle.setText(R.string.home_title);
+                                break;
                             case R.id.action_discover:
                                 fragment = DiscoverFragment.newInstance();
+                                toolbarTitle.setText(R.string.discover_title);
                                 break;
                             case R.id.action_collections:
                                 if (locationFlag) {
@@ -83,9 +96,11 @@ public class MainActivity extends AppCompatActivity
                                 fragment = CollectionFragment
                                         .newInstance(CollectionFragment.COLLECTION_FRAGMENT_VALUE,
                                                 cityName);
+                                toolbarTitle.setText(R.string.nearby_title);
                                 break;
                             case R.id.action_buckets:
-                                fragment = BucketsFragment.newInstance(BucketsFragment.BUCKETS_FRAGMENT_VALUE);
+                                fragment = BucketListFragment.newInstance(BucketListFragment.BUCKETS_FRAGMENT_VALUE);
+                                toolbarTitle.setText(R.string.bucket_title);
                                 break;
                         }
 

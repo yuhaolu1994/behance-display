@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.yuhaolu.behancedisplay.R;
+import com.example.yuhaolu.behancedisplay.utils.ModelUtils;
+import com.example.yuhaolu.behancedisplay.view.buckets_list.BucketListFragment;
 
 import java.util.List;
 
@@ -18,7 +20,7 @@ public abstract class InfiniteAdapter<M> extends RecyclerView.Adapter<BaseViewHo
 
     private final Context context;
     private List<M> data;
-    private final LoadMoreListener loadMoreListener;
+    private LoadMoreListener loadMoreListener;
     boolean showLoading;
 
     public InfiniteAdapter(@NonNull Context context,
@@ -28,6 +30,13 @@ public abstract class InfiniteAdapter<M> extends RecyclerView.Adapter<BaseViewHo
         this.data = data;
         this.loadMoreListener = loadMoreListener;
         this.showLoading = true;
+    }
+
+    public InfiniteAdapter(@NonNull Context context,
+                           @NonNull List<M> data) {
+        this.context = context;
+        this.data = data;
+        this.showLoading = false;
     }
 
     @Override
@@ -78,6 +87,15 @@ public abstract class InfiniteAdapter<M> extends RecyclerView.Adapter<BaseViewHo
     public void append(@NonNull List<M> data) {
         this.data.addAll(data);
         notifyDataSetChanged();
+    }
+
+    public void add(@NonNull M data) {
+        this.data.add(data);
+        notifyDataSetChanged();
+    }
+
+    public void saveData() {
+        ModelUtils.save(context, BucketListFragment.CREATED_BUCKET, data);
     }
 
     public void setShowLoading(boolean showLoading) {

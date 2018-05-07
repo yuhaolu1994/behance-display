@@ -91,8 +91,10 @@ public class CommentFragment extends Fragment {
 
         @Override
         protected void onSuccess(List<Comment_> comments) {
-
-            adapter.setShowLoading(comments.size() >= Behance.COMMENT_COUNT_PER_PAGE);
+            // run on UI thread
+            if (comments.size() < Behance.COMMENT_COUNT_PER_PAGE) {
+                adapter.setShowLoading(false);
+            }
 
             if (refresh) {
                 swipeRefreshLayout.setRefreshing(false);

@@ -1,4 +1,4 @@
-package com.example.yuhaolu.behancedisplay.view.discover_popular_creatives;
+package com.example.yuhaolu.behancedisplay.view.discover;
 
 
 import android.os.Bundle;

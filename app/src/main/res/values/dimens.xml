@@ -10,4 +10,5 @@
     <dimen name="shot_author_picture_radius">24dp</dimen>
     <dimen name="spacing_small">8dp</dimen>
     <dimen name="toolbar_elevation">4dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>

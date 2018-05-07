@@ -19,6 +19,16 @@
     <string name="comment_activity_title">Comments</string>
     <string name="inbox">Inbox</string>
     <string name="share_project">Share project</string>
+    <string name="bucket_name">Bucket name</string>
+    <string name="bucket_description">Bucket description</string>
+    <string name="new_bucket_title">New bucket</string>
+    <string name="new_bucket_create">Create</string>
+    <string name="new_bucket_cancel">Cancel</string>
+    <string name="home_title">Home</string>
+    <string name="nearby_title">NearBy</string>
+    <string name="bucket_title">Bucket</string>
+    <string name="text_home">Home</string>
+    <string name="discover_title">Discover</string>
 
     <!-- TODO: Remove or change this placeholder text -->
 </resources>

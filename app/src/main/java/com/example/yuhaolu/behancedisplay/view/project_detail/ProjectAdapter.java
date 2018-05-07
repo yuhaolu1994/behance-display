@@ -74,6 +74,14 @@ public class ProjectAdapter extends RecyclerView.Adapter {
                         projectFragment.startActivity(intent);
                     }
                 });
+
+                projectDetailViewHolder.bucket.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                    }
+                });
+
                 break;
         }
     }
