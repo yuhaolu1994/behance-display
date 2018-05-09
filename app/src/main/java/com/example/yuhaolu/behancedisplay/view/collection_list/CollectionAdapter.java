@@ -55,15 +55,15 @@ public class CollectionAdapter extends InfiniteAdapter<Project> {
         collectionViewHolder.cover.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new loadProjectDetailTask(project.id).execute();
+                new LoadProjectDetailTask(project.id).execute();
             }
         });
     }
 
-    private class loadProjectDetailTask extends BehanceTask<Void, Void, ProjectDetail> {
+    private class LoadProjectDetailTask extends BehanceTask<Void, Void, ProjectDetail> {
         private int id;
 
-        public loadProjectDetailTask(int id) {
+        public LoadProjectDetailTask(int id) {
             this.id = id;
         }
 

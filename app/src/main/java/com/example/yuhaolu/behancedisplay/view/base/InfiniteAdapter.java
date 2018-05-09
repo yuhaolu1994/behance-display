@@ -39,6 +39,11 @@ public abstract class InfiniteAdapter<M> extends RecyclerView.Adapter<BaseViewHo
         this.showLoading = false;
     }
 
+    public InfiniteAdapter(Context context) {
+        this.context = context;
+        this.showLoading = false;
+    }
+
     @Override
     public BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == TYPE_LOADING) {

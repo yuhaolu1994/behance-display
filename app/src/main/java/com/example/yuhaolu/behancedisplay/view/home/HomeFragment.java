@@ -9,14 +9,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.example.yuhaolu.behancedisplay.R;
 import com.example.yuhaolu.behancedisplay.behance.Behance;
 import com.example.yuhaolu.behancedisplay.model.Project;
+import com.example.yuhaolu.behancedisplay.model.SectionDataModel;
 import com.example.yuhaolu.behancedisplay.view.base.BehanceTask;
-import com.example.yuhaolu.behancedisplay.view.base.InfiniteAdapter;
-import com.example.yuhaolu.behancedisplay.view.base.SpaceItemDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,54 +24,58 @@ import butterknife.ButterKnife;
 
 public class HomeFragment extends Fragment {
 
-    @BindView(R.id.recycler_view)
-    RecyclerView recyclerView;
-    @BindView(R.id.home_field_name)
-    TextView fieldTitle;
+    @BindView(R.id.home_recycler_view) RecyclerView recyclerView;
 
-    public static HomeFragment newInstance() {
-        return new HomeFragment();
-    }
+    private ArrayList<SectionDataModel> allSampleData;
 
-    private HomeAdapter adapter;
+    private RecyclerViewDataAdapter adapter;
+
+    public static HomeFragment newInstance() {return new HomeFragment();}
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.home_field_projects, container, false);
+        View view = getLayoutInflater().inflate(R.layout.fragment_home, null);
         ButterKnife.bind(this, view);
         return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        fieldTitle.setText("Advertising");
-        adapter = new HomeAdapter(view.getContext(), new ArrayList<Project>());
-        new LoadHomeProjectsTask().execute();
-        LinearLayoutManager manager = new LinearLayoutManager(view.getContext());
-        manager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        recyclerView.setLayoutManager(manager);
+        allSampleData = new ArrayList<>();
+        adapter = new RecyclerViewDataAdapter(allSampleData, view.getContext());
+        if (allSampleData.size() == 0) {
+            new LoadHomeProjectsTask("Advertising").execute();
+            new LoadHomeProjectsTask("Architecture").execute();
+            new LoadHomeProjectsTask("Branding").execute();
+        }
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(adapter);
-        recyclerView.addItemDecoration(new SpaceItemDecoration(getResources()
-                .getDimensionPixelSize(R.dimen.spacing_medium)));
     }
 
-    private class LoadHomeProjectsTask extends BehanceTask<Void, Void, List<Project>> {
+    public class LoadHomeProjectsTask extends BehanceTask<Void, Void, List<Project>> {
+
+        private String fieldName;
+
+        public LoadHomeProjectsTask(String fieldName) {
+            this.fieldName = fieldName;
+        }
 
         @Override
         protected List<Project> doJob(Void... voids) {
-            return Behance.getHomeProjects("Advertising");
+            return Behance.getHomeProjects(fieldName);
         }
 
         @Override
         protected void onSuccess(List<Project> projects) {
-            List<Project> addProjects = new ArrayList<>();
-            for (int i = 0; i < 10; ++i) {
+            ArrayList<Project> addProjects = new ArrayList<>();
+            for (int i = 0; i < 5; i++) {
                 addProjects.add(projects.get(i));
             }
-            adapter.append(addProjects);
+            adapter.append(addProjects, fieldName);
         }
     }
 }
