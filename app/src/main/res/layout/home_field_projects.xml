@@ -12,7 +12,6 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/spacing_xsmall"
         android:gravity="center"
-        android:textColor="@android:color/black"
         android:textSize="17sp"
         android:textStyle="bold"
         tools:text="Field name" />

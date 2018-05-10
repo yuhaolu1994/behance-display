@@ -2,6 +2,8 @@ package com.example.yuhaolu.behancedisplay.view.home;
 
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.LinearSnapHelper;
+import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +12,7 @@ import android.view.ViewGroup;
 import com.example.yuhaolu.behancedisplay.R;
 import com.example.yuhaolu.behancedisplay.model.Project;
 import com.example.yuhaolu.behancedisplay.model.SectionDataModel;
+import com.example.yuhaolu.behancedisplay.utils.GallerySnapHelper;
 
 import java.util.ArrayList;
 
@@ -18,11 +21,13 @@ public class RecyclerViewDataAdapter extends RecyclerView.Adapter<ItemRowHolder>
     private ArrayList<SectionDataModel> dataList;
     private Context context;
     private RecyclerView.RecycledViewPool recycledViewPool;
+    private GallerySnapHelper snapHelper;
 
     public RecyclerViewDataAdapter(ArrayList<SectionDataModel> dataList, Context context) {
         this.dataList = dataList;
         this.context = context;
         recycledViewPool = new RecyclerView.RecycledViewPool();
+        snapHelper = new GallerySnapHelper();
     }
 
     @Override
@@ -41,7 +46,7 @@ public class RecyclerViewDataAdapter extends RecyclerView.Adapter<ItemRowHolder>
         holder.recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
         holder.recyclerView.setAdapter(adapter);
         holder.recyclerView.setRecycledViewPool(recycledViewPool);
-//        holder.recyclerView.addItemDecoration(new HomeItemDecoration(context.getResources().getDimensionPixelSize(R.dimen.spacing_xsmall)));
+        snapHelper.attachToRecyclerView(holder.recyclerView);
     }
 
     @Override

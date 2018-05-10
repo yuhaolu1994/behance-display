@@ -45,7 +45,7 @@ public class SectionListDataAdapter extends RecyclerView.Adapter<SingleItemRowHo
         holder.cover.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new LoadProjectDetailTask(project.id).execute();
+                new LoadHomeProjectDetailTask(project.id).execute();
             }
         });
     }
@@ -55,10 +55,10 @@ public class SectionListDataAdapter extends RecyclerView.Adapter<SingleItemRowHo
         return (null != projects ? projects.size() : 0);
     }
 
-    private class LoadProjectDetailTask extends BehanceTask<Void, Void, ProjectDetail> {
+    private class LoadHomeProjectDetailTask extends BehanceTask<Void, Void, ProjectDetail> {
         private int id;
 
-        public LoadProjectDetailTask(int id) {
+        public LoadHomeProjectDetailTask(int id) {
             this.id = id;
         }
 

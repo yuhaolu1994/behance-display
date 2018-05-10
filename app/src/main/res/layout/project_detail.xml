@@ -70,7 +70,6 @@
             android:layout_height="wrap_content"
             android:layout_alignTop="@id/shot_author_picture"
             android:layout_toRightOf="@id/shot_author_picture"
-            android:textColor="@android:color/black"
             android:textSize="17sp"
             tools:text="Shot title"/>
 
@@ -89,7 +88,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_small"
-
         tools:text="Shot description\nShot description\nShot description\nShot description"/>
 
 </LinearLayout>

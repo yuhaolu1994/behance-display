@@ -72,7 +72,7 @@ public class HomeFragment extends Fragment {
         @Override
         protected void onSuccess(List<Project> projects) {
             ArrayList<Project> addProjects = new ArrayList<>();
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < 10; i++) {
                 addProjects.add(projects.get(i));
             }
             adapter.append(addProjects, fieldName);

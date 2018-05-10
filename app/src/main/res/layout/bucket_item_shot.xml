@@ -16,7 +16,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_toLeftOf="@id/bucket_shot_chosen"
-            android:textColor="@color/colorPrimary"
             tools:text="Bucket name" />
 
         <TextView
