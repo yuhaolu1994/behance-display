@@ -17,7 +17,7 @@ public class HomeItemDecoration extends RecyclerView.ItemDecoration {
         outRect.right = space;
         outRect.bottom = space;
 
-        if (parent.getChildAdapterPosition(view) == 0) {
+        if (parent.getChildLayoutPosition(view) == 0) {
             outRect.left = space;
         }
     }

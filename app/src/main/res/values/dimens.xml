@@ -11,4 +11,6 @@
     <dimen name="spacing_small">8dp</dimen>
     <dimen name="toolbar_elevation">4dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="creative_picture_size">150dp</dimen>
+    <dimen name="creative_picture_radius">75dp</dimen>
 </resources>

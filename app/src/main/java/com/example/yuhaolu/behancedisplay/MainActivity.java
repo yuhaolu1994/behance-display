@@ -64,12 +64,12 @@ public class MainActivity extends AppCompatActivity
         if (savedInstanceState == null) {
 //            fragment = CollectionFragment.newInstance(CollectionFragment.COLLECTION_FRAGMENT_VALUE,
 //                    getCurrentCity());
-            fragment = HomeFragment.newInstance();
+            fragment = DiscoverFragment.newInstance();
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.fragment_container, fragment)
                     .commit();
-            toolbarTitle.setText(R.string.home_title);
+            toolbarTitle.setText(R.string.discover_title);
         }
         checkLocationPermission();
     }
