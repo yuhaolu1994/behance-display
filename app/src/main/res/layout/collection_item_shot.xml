@@ -84,6 +84,7 @@
                 android:layout_toRightOf="@id/shot_like_count"
                 android:drawableLeft="@drawable/ic_comment_black_24dp"
                 android:drawablePadding="@dimen/spacing_xsmall"
+                android:clickable="true"
                 tools:text="80"/>
 
         </RelativeLayout>

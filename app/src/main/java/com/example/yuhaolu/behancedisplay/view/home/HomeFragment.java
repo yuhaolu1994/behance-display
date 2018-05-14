@@ -6,9 +6,11 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.yuhaolu.behancedisplay.R;
 import com.example.yuhaolu.behancedisplay.behance.Behance;
@@ -25,6 +27,8 @@ import butterknife.ButterKnife;
 public class HomeFragment extends Fragment {
 
     @BindView(R.id.home_recycler_view) RecyclerView recyclerView;
+    @BindView(R.id.toolbar) Toolbar toolbar;
+    @BindView(R.id.toolbar_title) TextView toolbarTitle;
 
     private ArrayList<SectionDataModel> allSampleData;
 
@@ -44,6 +48,7 @@ public class HomeFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        toolbarTitle.setText(R.string.home_title);
         allSampleData = new ArrayList<>();
         adapter = new RecyclerViewDataAdapter(allSampleData, view.getContext());
         if (allSampleData.size() == 0) {

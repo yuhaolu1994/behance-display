@@ -9,11 +9,12 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
-import com.example.yuhaolu.behancedisplay.MainActivity;
 import com.example.yuhaolu.behancedisplay.R;
 import com.example.yuhaolu.behancedisplay.model.Bucket;
 import com.example.yuhaolu.behancedisplay.utils.ModelUtils;
@@ -30,8 +31,9 @@ public class BucketListFragment extends Fragment {
 
     @BindView(R.id.fab) FloatingActionButton fab;
     @BindView(R.id.recycler_view) RecyclerView recyclerView;
+    @BindView(R.id.toolbar) Toolbar toolbar;
+    @BindView(R.id.toolbar_title) TextView toolbarTitle;
 
-    public static final String BUCKETS_FRAGMENT_VALUE = "Buckets";
     public static final String CREATED_BUCKET = "created_bucket";
 
 
@@ -40,11 +42,8 @@ public class BucketListFragment extends Fragment {
     private BucketListAdapter adapter;
     private List<Bucket> buckets;
 
-    public static BucketListFragment newInstance(String fragmentType) {
+    public static BucketListFragment newInstance() {
         BucketListFragment bucketsFragment = new BucketListFragment();
-        Bundle args = new Bundle();
-        args.putString(MainActivity.FRAGMENT_KEY, fragmentType);
-        bucketsFragment.setArguments(args);
         return bucketsFragment;
     }
 
@@ -58,6 +57,7 @@ public class BucketListFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        toolbarTitle.setText(R.string.bucket_title);
         List<Bucket> savedBuckets = ModelUtils.read(view.getContext(), CREATED_BUCKET,
                 new TypeToken<List<Bucket>>(){});
 

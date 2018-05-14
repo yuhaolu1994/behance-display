@@ -6,14 +6,16 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
-import com.example.yuhaolu.behancedisplay.MainActivity;
 import com.example.yuhaolu.behancedisplay.R;
 import com.example.yuhaolu.behancedisplay.behance.Behance;
 import com.example.yuhaolu.behancedisplay.model.Project;
+import com.example.yuhaolu.behancedisplay.utils.DoubleClickBackToTop;
 import com.example.yuhaolu.behancedisplay.view.base.BehanceTask;
 import com.example.yuhaolu.behancedisplay.view.base.InfiniteAdapter;
 import com.example.yuhaolu.behancedisplay.view.base.SpaceItemDecoration;
@@ -27,11 +29,11 @@ import butterknife.ButterKnife;
 public class CollectionFragment extends Fragment {
     @BindView(R.id.recycler_view) RecyclerView recyclerView;
     @BindView(R.id.swipe_refresh_container) SwipeRefreshLayout swipeRefreshLayout;
+    @BindView(R.id.toolbar) Toolbar toolbar;
+    @BindView(R.id.toolbar_title) TextView toolbarTitle;
 
     private CollectionAdapter adapter;
     private static String city;
-
-    public static final String COLLECTION_FRAGMENT_VALUE = "Collection";
 
     private InfiniteAdapter.LoadMoreListener onLoadMore = new InfiniteAdapter.LoadMoreListener() {
         @Override
@@ -40,12 +42,9 @@ public class CollectionFragment extends Fragment {
         }
     };
 
-    public static CollectionFragment newInstance(String fragmentType, String cityName) {
+    public static CollectionFragment newInstance(String cityName) {
         city = cityName;
         CollectionFragment collectionFragment = new CollectionFragment();
-        Bundle args = new Bundle();
-        args.putString(MainActivity.FRAGMENT_KEY, fragmentType);
-        collectionFragment.setArguments(args);
         return collectionFragment;
     }
 
@@ -59,6 +58,13 @@ public class CollectionFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        toolbarTitle.setText(R.string.nearby_title);
+        toolbar.setOnClickListener(new DoubleClickBackToTop(new DoubleClickBackToTop.BackToContentTopView() {
+            @Override
+            public void backToContentTop() {
+                recyclerView.scrollToPosition(0);
+            }
+        }));
 
         // avoid refresh action while refreshing
         swipeRefreshLayout.setEnabled(false);

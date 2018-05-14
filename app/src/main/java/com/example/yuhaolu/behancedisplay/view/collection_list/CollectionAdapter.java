@@ -16,6 +16,8 @@ import com.example.yuhaolu.behancedisplay.utils.ModelUtils;
 import com.example.yuhaolu.behancedisplay.view.base.BaseViewHolder;
 import com.example.yuhaolu.behancedisplay.view.base.BehanceTask;
 import com.example.yuhaolu.behancedisplay.view.base.InfiniteAdapter;
+import com.example.yuhaolu.behancedisplay.view.project_detail.CommentActivity;
+import com.example.yuhaolu.behancedisplay.view.project_detail.CommentFragment;
 import com.example.yuhaolu.behancedisplay.view.project_detail.ProjectActivity;
 import com.example.yuhaolu.behancedisplay.view.project_detail.ProjectFragment;
 import com.google.gson.reflect.TypeToken;
@@ -50,6 +52,14 @@ public class CollectionAdapter extends InfiniteAdapter<Project> {
         collectionViewHolder.viewCount.setText(String.valueOf(project.stats.views));
         collectionViewHolder.likeCount.setText(String.valueOf(project.stats.appreciations));
         collectionViewHolder.commentCount.setText(String.valueOf(project.stats.comments));
+        collectionViewHolder.commentCount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), CommentActivity.class);
+                intent.putExtra(CommentFragment.KEY_PROJECT_ID, String.valueOf(project.id));
+                collectionFragment.startActivity(intent);
+            }
+        });
         ImageUtils.loadShotImage(project, collectionViewHolder.image);
 
         collectionViewHolder.cover.setOnClickListener(new View.OnClickListener() {

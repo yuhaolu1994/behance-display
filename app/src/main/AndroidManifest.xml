@@ -27,7 +27,12 @@
         </activity>
 
         <activity android:name=".view.project_detail.ProjectActivity"/>
+
         <activity android:name=".view.project_detail.CommentActivity"/>
+
+        <activity android:name=".view.search_screen.SearchActivity"
+            android:windowSoftInputMode="stateVisible"/>
+
     </application>
 
 </manifest>

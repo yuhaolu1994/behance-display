@@ -13,4 +13,6 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="creative_picture_size">150dp</dimen>
     <dimen name="creative_picture_radius">75dp</dimen>
+    <dimen name="toolbar_height">64dp</dimen>
+    <dimen name="toolbarMargin">8dp</dimen>
 </resources>

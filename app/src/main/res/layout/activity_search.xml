@@ -4,11 +4,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/simple_toolbar" />
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/discover_recycler_view"
+    <com.example.yuhaolu.behancedisplay.toolbar.Searchbar
+        android:id="@+id/search_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="@dimen/toolbar_height"
+        android:gravity="top"/>
 
 </LinearLayout>
