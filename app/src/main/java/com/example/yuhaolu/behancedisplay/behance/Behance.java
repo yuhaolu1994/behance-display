@@ -2,6 +2,9 @@ package com.example.yuhaolu.behancedisplay.behance;
 
 import android.util.Log;
 
+import com.example.yuhaolu.behancedisplay.model.Author;
+import com.example.yuhaolu.behancedisplay.model.Collection;
+import com.example.yuhaolu.behancedisplay.model.Collection_;
 import com.example.yuhaolu.behancedisplay.model.Comment;
 import com.example.yuhaolu.behancedisplay.model.Comment_;
 import com.example.yuhaolu.behancedisplay.model.Creatives;
@@ -10,10 +13,13 @@ import com.example.yuhaolu.behancedisplay.model.Project;
 import com.example.yuhaolu.behancedisplay.model.ProjectDetail;
 import com.example.yuhaolu.behancedisplay.model.Shot;
 import com.example.yuhaolu.behancedisplay.model.ShotDetail;
+import com.example.yuhaolu.behancedisplay.model.User;
+import com.example.yuhaolu.behancedisplay.model.User_;
 import com.example.yuhaolu.behancedisplay.utils.ModelUtils;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
+import java.security.KeyStore;
 import java.util.List;
 
 import okhttp3.OkHttpClient;
@@ -25,11 +31,17 @@ public class Behance {
     private static final String API_URL = "https://api.behance.net/v2";
     private static final String PROJECTS_END_POINT = API_URL + "/projects";
     private static final String CREATIVE_END_POINT = API_URL + "/creativestofollow";
+    private static final String COLLECTION_END_POINT = API_URL + "/collections";
+    private static final String USER_END_POINT = API_URL + "/users";
     private static final String API_KEY = "cSD5E5zX5yi4CUaCPSz9G9CJq50tB3SW";
     private static final TypeToken<Shot> SHOT_LIST_TYPE = new TypeToken<Shot>(){};
     private static final TypeToken<ShotDetail> SHOT_DETAIL_TYPE = new TypeToken<ShotDetail>(){};
     private static final TypeToken<Comment> SHOT_COMMENT_TYPE = new TypeToken<Comment>(){};
     private static final TypeToken<Creatives> CREATIVES_LIST_TYPE = new TypeToken<Creatives>(){};
+    private static final TypeToken<Collection> COLLECTION_LIST_TYPE = new TypeToken<Collection>(){};
+    private static final TypeToken<Author> USER_LIST_TYPE = new TypeToken<Author>(){};
+
+
 
     public static final int ITEM_COUNT_PER_PAGE = 48;
     public static final int COMMENT_COUNT_PER_PAGE = 10;
@@ -93,8 +105,25 @@ public class Behance {
     public static List<CreativesToFollow> getCreative() {
         String url = CREATIVE_END_POINT + "?client_id=" + API_KEY;
         Creatives creatives = parseResponse(makeGetRequest(url), CREATIVES_LIST_TYPE);
-        Log.i("URL", url);
         return creatives.creativesToFollow;
     }
 
+    public static List<Project> getDiscoveredProjects(String query) {
+        String url = PROJECTS_END_POINT  + "?q=" + query + "&client_id=" + API_KEY;
+        Shot shot = parseResponse(makeGetRequest(url), SHOT_LIST_TYPE);
+        return shot.projects;
+    }
+
+    public static List<Collection_> getDiscoveredCollections(String query) {
+        String url = COLLECTION_END_POINT  + "?q=" + query + "&client_id=" + API_KEY;
+        Collection collection = parseResponse(makeGetRequest(url), COLLECTION_LIST_TYPE);
+        return  collection.collections;
+    }
+
+    public static List<User_> getDiscoveredUsers(String query) {
+        String url = USER_END_POINT  + "?q=" + query + "&client_id=" + API_KEY;
+        Author author = parseResponse(makeGetRequest(url), USER_LIST_TYPE);
+        Log.i("URL", url);
+        return author.users;
+    }
 }

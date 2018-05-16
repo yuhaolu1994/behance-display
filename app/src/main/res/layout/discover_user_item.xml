@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/discover_user_picture"
+        android:layout_width="@dimen/shot_author_picture_size"
+        android:layout_height="@dimen/shot_author_picture_size"
+        android:layout_marginRight="@dimen/spacing_medium"
+        fresco:placeholderImage="@drawable/user_picture_placeholder"
+        fresco:actualImageScaleType="centerCrop"
+        fresco:roundAsCircle="true"
+        tools:background="@drawable/user_picture_placeholder" />
+
+    <TextView
+        android:id="@+id/discover_user_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/discover_user_picture"
+        android:layout_toRightOf="@id/discover_user_picture"
+        android:textStyle="bold"
+        tools:text="Author name" />
+
+    <TextView
+        android:id="@+id/discover_user_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/discover_user_name"
+        android:layout_below="@id/discover_user_name"
+        android:layout_marginTop="@dimen/spacing_xsmall"
+        tools:text="Field name"/>
+
+
+</RelativeLayout>

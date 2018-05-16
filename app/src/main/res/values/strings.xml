@@ -29,6 +29,11 @@
     <string name="bucket_title">Bucket</string>
     <string name="text_home">Home</string>
     <string name="discover_title">Discover</string>
+    <string name="projects">Projects</string>
+    <string name="collections">Collections</string>
+    <string name="users">Artists</string>
+    <string name="show_more_collections">See all collections</string>
+    <string name="show_more_users">See all artists</string>
 
     <!-- TODO: Remove or change this placeholder text -->
 </resources>

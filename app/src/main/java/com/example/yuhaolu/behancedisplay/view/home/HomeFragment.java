@@ -80,7 +80,7 @@ public class HomeFragment extends Fragment {
             for (int i = 0; i < 10; i++) {
                 addProjects.add(projects.get(i));
             }
-            adapter.append(addProjects, fieldName);
+            adapter.appendProjects(addProjects, fieldName);
         }
     }
 }

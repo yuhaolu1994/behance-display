@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/collection_picture"
+        android:layout_width="@dimen/shot_author_picture_size"
+        android:layout_height="@dimen/shot_author_picture_size"
+        android:layout_marginRight="@dimen/spacing_medium"
+        fresco:actualImageScaleType="centerCrop"
+        fresco:placeholderImage="@drawable/collection_picture_placeholder"
+        tools:background="@drawable/collection_picture_placeholder" />
+
+    <TextView
+        android:id="@+id/collection_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/collection_picture"
+        android:layout_toRightOf="@id/collection_picture"
+        android:textStyle="bold"
+        tools:text="Collection name" />
+
+    <TextView
+        android:id="@+id/collection_count"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/collection_name"
+        android:layout_below="@id/collection_name"
+        android:layout_marginTop="@dimen/spacing_xsmall"
+        tools:text="Item count" />
+
+</RelativeLayout>

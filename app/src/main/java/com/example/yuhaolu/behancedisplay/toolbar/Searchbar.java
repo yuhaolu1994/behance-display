@@ -12,7 +12,7 @@ import com.example.yuhaolu.behancedisplay.R;
 
 public class Searchbar extends TransformingToolbar {
 
-    private EditText editText;
+    public static EditText editText;
 
     public Searchbar(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -25,16 +25,6 @@ public class Searchbar extends TransformingToolbar {
         super.onFinishInflate();
         inflate(getContext(), R.layout.merge_search, this);
         editText = findViewById(R.id.toolbar_search_editText);
-        editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
-                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    Toast.makeText(getContext(), "Search info", Toast.LENGTH_LONG).show();
-                    return true;
-                }
-                return false;
-            }
-        });
     }
 
     @Override

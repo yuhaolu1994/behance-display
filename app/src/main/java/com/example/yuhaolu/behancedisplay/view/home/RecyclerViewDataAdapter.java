@@ -2,8 +2,6 @@ package com.example.yuhaolu.behancedisplay.view.home;
 
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.LinearSnapHelper;
-import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,13 +36,13 @@ public class RecyclerViewDataAdapter extends RecyclerView.Adapter<ItemRowHolder>
 
     @Override
     public void onBindViewHolder(ItemRowHolder holder, int position) {
-        final String sectionName = dataList.get(position).getHeaderTitle();
-        ArrayList projects = dataList.get(position).getAllItemInSection();
-        holder.fieldName.setText(sectionName);
-        SectionListDataAdapter adapter = new SectionListDataAdapter(projects, context);
+        final String fieldTitle = dataList.get(position).getHeaderTitle();
+        ArrayList<Project> projects = dataList.get(position).getAllItemInSection();
+        holder.fieldName.setText(fieldTitle);
+        SectionListDataAdapter projectAdapter = new SectionListDataAdapter(projects, context);
         holder.recyclerView.setHasFixedSize(true);
         holder.recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
-        holder.recyclerView.setAdapter(adapter);
+        holder.recyclerView.setAdapter(projectAdapter);
         holder.recyclerView.setRecycledViewPool(recycledViewPool);
         snapHelper.attachToRecyclerView(holder.recyclerView);
     }
@@ -54,7 +52,8 @@ public class RecyclerViewDataAdapter extends RecyclerView.Adapter<ItemRowHolder>
         return (null != dataList ? dataList.size() : 0);
     }
 
-    public void append(ArrayList<Project> addProjects, String fieldName) {
+
+    public void appendProjects(ArrayList<Project> addProjects, String fieldName) {
         SectionDataModel dm = new SectionDataModel();
         dm.setHeaderTitle(fieldName);
         dm.setAllItemInSection(addProjects);
