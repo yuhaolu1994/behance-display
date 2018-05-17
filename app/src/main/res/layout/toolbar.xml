@@ -8,7 +8,7 @@
     android:background="@color/colorPrimary"
     android:fitsSystemWindows="true"
     android:elevation="@dimen/toolbar_elevation"
-    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+    android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+    app:popupTheme="@style/ThemeOverlay.AppCompat"/>
     <!-- line 12: make the icon and text color white  -->
     <!-- line 13: theme for menu  -->

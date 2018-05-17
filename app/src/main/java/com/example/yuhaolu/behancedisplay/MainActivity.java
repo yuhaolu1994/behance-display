@@ -2,6 +2,7 @@ package com.example.yuhaolu.behancedisplay;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.content.res.ColorStateList;
 import android.location.Address;
 import android.location.Criteria;
 import android.location.Geocoder;
@@ -46,9 +47,8 @@ public class MainActivity extends AppCompatActivity {
 
         setupBottomView();
 
+
         if (savedInstanceState == null) {
-//            fragment = CollectionFragment.newInstance(CollectionFragment.COLLECTION_FRAGMENT_VALUE,
-//                    getCurrentCity());
             fragment = HomeFragment.newInstance();
             getSupportFragmentManager()
                     .beginTransaction()

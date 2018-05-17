@@ -21,6 +21,6 @@ public class CommentActivity extends SingleFragmentActivity {
     @NonNull
     @Override
     protected void setBackIcon() {
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_clear_white_24dp);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_clear_black_24dp);
     }
 }

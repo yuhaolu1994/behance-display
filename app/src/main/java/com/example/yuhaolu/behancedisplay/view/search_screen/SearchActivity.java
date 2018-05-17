@@ -101,14 +101,14 @@ public class SearchActivity extends AppCompatActivity {
         collectionAdapter = new SearchCollectionAdapter(this, new ArrayList<Collection_>());
         collectionView.setAdapter(collectionAdapter);
         collectionView.setLayoutManager(new LinearLayoutManager(this));
-        collectionView.addItemDecoration(new SpaceItemDecoration(getResources().getDimensionPixelSize(R.dimen.spacing_small)));
+        collectionView.addItemDecoration(new SpaceItemDecoration(getResources().getDimensionPixelSize(R.dimen.spacing_medium)));
     }
 
     private void setupUsersView() {
         userAdapter = new SearchUserAdapter(this, new ArrayList<User_>());
         userView.setAdapter(userAdapter);
         userView.setLayoutManager(new LinearLayoutManager(this));
-        userView.addItemDecoration(new SpaceItemDecoration(getResources().getDimensionPixelSize(R.dimen.spacing_small)));
+        userView.addItemDecoration(new SpaceItemDecoration(getResources().getDimensionPixelSize(R.dimen.spacing_medium)));
     }
 
     private void setupSearch() {

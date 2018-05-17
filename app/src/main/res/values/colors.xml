@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#1C1C1C</color>
-    <color name="colorPrimaryDark">#000000</color>
-    <color name="colorAccent">#585858</color>
+    <color name="colorPrimary">#f2f1f1</color>
+    <color name="colorPrimaryDark">#e4e3e3</color>
+    <color name="colorAccent">#f2f1f1</color>
 
     <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
     <color name="tab_indicator_color">@android:color/white</color>
     <color name="place_holder_bg">#33000000</color>
 </resources>

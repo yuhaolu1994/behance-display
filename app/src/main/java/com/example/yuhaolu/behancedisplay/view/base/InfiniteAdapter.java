@@ -32,18 +32,6 @@ public abstract class InfiniteAdapter<M> extends RecyclerView.Adapter<BaseViewHo
         this.showLoading = true;
     }
 
-    public InfiniteAdapter(@NonNull Context context,
-                           @NonNull List<M> data) {
-        this.context = context;
-        this.data = data;
-        this.showLoading = false;
-    }
-
-    public InfiniteAdapter(Context context) {
-        this.context = context;
-        this.showLoading = false;
-    }
-
     @Override
     public BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == TYPE_LOADING) {
@@ -97,10 +85,6 @@ public abstract class InfiniteAdapter<M> extends RecyclerView.Adapter<BaseViewHo
     public void add(@NonNull M data) {
         this.data.add(data);
         notifyDataSetChanged();
-    }
-
-    public void saveData() {
-        ModelUtils.save(context, BucketListFragment.CREATED_BUCKET, data);
     }
 
     public void setShowLoading(boolean showLoading) {

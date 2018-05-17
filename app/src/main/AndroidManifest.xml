@@ -18,7 +18,9 @@
 
         <activity
             android:name=".MainActivity"
-            android:windowSoftInputMode="adjustPan">
+            android:windowSoftInputMode="adjustPan"
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,12 +28,18 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".view.project_detail.ProjectActivity"/>
+        <activity
+            android:name=".view.project_detail.ProjectActivity"
+            android:screenOrientation="portrait"/>
 
-        <activity android:name=".view.project_detail.CommentActivity"/>
+        <activity
+            android:name=".view.project_detail.CommentActivity"
+            android:screenOrientation="portrait"/>
 
-        <activity android:name=".view.search_screen.SearchActivity"
-            android:windowSoftInputMode="stateVisible"/>
+        <activity
+            android:name=".view.search_screen.SearchActivity"
+            android:windowSoftInputMode="stateVisible"
+            android:screenOrientation="portrait"/>
 
     </application>
 

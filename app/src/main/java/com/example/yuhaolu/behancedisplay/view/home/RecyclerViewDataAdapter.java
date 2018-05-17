@@ -11,6 +11,7 @@ import com.example.yuhaolu.behancedisplay.R;
 import com.example.yuhaolu.behancedisplay.model.Project;
 import com.example.yuhaolu.behancedisplay.model.SectionDataModel;
 import com.example.yuhaolu.behancedisplay.utils.GallerySnapHelper;
+import com.example.yuhaolu.behancedisplay.view.base.HomeItemDecoration;
 
 import java.util.ArrayList;
 
