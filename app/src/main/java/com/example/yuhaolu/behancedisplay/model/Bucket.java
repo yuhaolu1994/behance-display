@@ -13,4 +13,7 @@ public class Bucket {
         return bucketName;
     }
 
+    public void setChoosing(boolean choosing) {
+        isChoosing = choosing;
+    }
 }

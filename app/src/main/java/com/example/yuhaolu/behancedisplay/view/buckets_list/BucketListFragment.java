@@ -15,8 +15,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
-import android.util.Log;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -33,7 +31,6 @@ import com.example.yuhaolu.behancedisplay.model.ProjectDetail;
 import com.example.yuhaolu.behancedisplay.utils.ModelUtils;
 import com.example.yuhaolu.behancedisplay.utils.RecyclerItemTouchHelper;
 import com.example.yuhaolu.behancedisplay.view.base.SpaceItemDecoration;
-import com.example.yuhaolu.behancedisplay.view.project_detail.ProjectFragment;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
@@ -100,10 +97,22 @@ public class BucketListFragment extends Fragment implements BucketListAdapter.Bu
         buckets = savedBuckets == null ? new ArrayList() : savedBuckets;
 
         isChoosingMode = getArguments().getBoolean(KEY_CHOOSING_MODE);
+
         if (isChoosingMode) {
             toolbar.setVisibility(View.GONE);
             projectDetail = ModelUtils.toObject(getActivity().getIntent().getExtras().getString(KEY_CHOSEN_PROJECT),
                     new TypeToken<ProjectDetail>(){});
+
+            for (int i = 0; i < buckets.size(); i++) {
+                final List<ProjectDetail> bucketProjects = buckets.get(i).bucketProjects;
+                for (ProjectDetail project : bucketProjects) {
+                    if (project.name.equals(projectDetail.name)) {
+                        buckets.get(i).setChoosing(true);
+                    } else {
+                        buckets.get(i).setChoosing(false);
+                    }
+                }
+            }
         }
 
         adapter = new BucketListAdapter(view.getContext(), buckets, this, isChoosingMode);
@@ -138,6 +147,7 @@ public class BucketListFragment extends Fragment implements BucketListAdapter.Bu
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.save) {
             ArrayList<String> chosenBucketsNames = new ArrayList<>();
+
             boolean containInBucket = false;
 
             for (int i = 0; i < adapter.getBuckets().size(); i++) {
@@ -175,7 +185,6 @@ public class BucketListFragment extends Fragment implements BucketListAdapter.Bu
             bucket.bucketName = data.getStringExtra(NewBucketDialogFragment.KEY_BUCKET_NAME);
             bucket.bucketDescription = data.getStringExtra(NewBucketDialogFragment.KEY_BUCKET_DESCRIPTION);
             bucket.shotNum = 0;
-            bucket.isChoosing = false;
             bucket.bucketProjects = new ArrayList<>();
             adapter.add(bucket);
             adapter.saveData();
