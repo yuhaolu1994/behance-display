@@ -8,7 +8,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-
         <com.example.yuhaolu.behancedisplay.toolbar.Searchbar
             android:id="@+id/search_toolbar"
             android:layout_width="match_parent"

@@ -1,5 +1,6 @@
 package com.example.yuhaolu.behancedisplay.view.project_detail;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +17,11 @@ import android.view.ViewGroup;
 import com.example.yuhaolu.behancedisplay.R;
 import com.example.yuhaolu.behancedisplay.model.ProjectDetail;
 import com.example.yuhaolu.behancedisplay.utils.ModelUtils;
+import com.example.yuhaolu.behancedisplay.view.buckets_list.BucketListActivity;
+import com.example.yuhaolu.behancedisplay.view.buckets_list.BucketListFragment;
 import com.google.gson.reflect.TypeToken;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,10 +29,12 @@ import butterknife.ButterKnife;
 public class ProjectFragment extends Fragment {
 
     public static final String KEY_PROJECT = "project";
+    public static final int REQ_CODE_BUCKET = 100;
 
     @BindView(R.id.recycler_view) RecyclerView recyclerView;
 
     private ProjectDetail projectDetail;
+    private ProjectAdapter adapter;
 
     public static ProjectFragment newInstance(@NonNull Bundle args) {
         ProjectFragment fragment = new ProjectFragment();
@@ -48,8 +56,28 @@ public class ProjectFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         projectDetail = ModelUtils.toObject(getArguments().getString(KEY_PROJECT),
                 new TypeToken<ProjectDetail>(){});
+        adapter = new ProjectAdapter(this, projectDetail);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(new ProjectAdapter(this, projectDetail));
+        recyclerView.setAdapter(adapter);
+    }
+
+    // bucket function
+    public void bucket() {
+        Intent intent = new Intent(getContext(), BucketListActivity.class);
+        String projectValue = ModelUtils.toString(projectDetail, new TypeToken<ProjectDetail>(){});
+        intent.putExtra(BucketListFragment.KEY_CHOSEN_PROJECT, projectValue);
+        startActivityForResult(intent, REQ_CODE_BUCKET);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQ_CODE_BUCKET && resultCode == Activity.RESULT_OK) {
+            List<String> chosenBucketNames = data.getStringArrayListExtra(
+                    BucketListFragment.KEY_CHOSEN_BUCKETS_NAMES);
+            if (chosenBucketNames.size() != 0) {
+                adapter.setProjectBucketed();
+            }
+        }
     }
 
     public void share(Context context) {

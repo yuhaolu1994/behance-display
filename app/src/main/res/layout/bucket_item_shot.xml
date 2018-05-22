@@ -1,48 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bucket_fragment_layout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto">
 
     <RelativeLayout
+        android:id="@+id/view_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bucket_item_bg">
+
+        <TextView
+            android:id="@+id/bucket_bg_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/bucket_action_delete"
+            android:layout_centerVertical="true"
+            android:text="@string/action_delete"
+            android:textSize="13dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:layout_marginRight="@dimen/spacing_small"/>
+
+        <ImageView
+            android:id="@+id/bucket_action_delete"
+            android:layout_width="@dimen/ic_delete"
+            android:layout_height="@dimen/ic_delete"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/spacing_small"
+            android:src="@drawable/ic_delete_white_24dp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/view_foreground"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/spacing_medium">
+        android:background="@color/white">
 
-        <TextView
-            android:id="@+id/bucket_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_toLeftOf="@id/bucket_shot_chosen"
-            tools:text="Bucket name" />
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/bucket_image"
+            android:layout_width="@dimen/bucket_picture_size"
+            android:layout_height="@dimen/bucket_picture_size"
+            fresco:placeholderImage="@drawable/bucket_picture_placeholder"
+            fresco:actualImageScaleType="centerCrop"
+            tools:background="@drawable/bucket_picture_placeholder"/>
 
-        <TextView
-            android:id="@+id/bucket_shot_count"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/bucket_linear_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_xsmall"
-            android:layout_alignParentLeft="true"
             android:layout_toLeftOf="@id/bucket_shot_chosen"
-            android:layout_below="@id/bucket_name"
-            tools:text="90 shots" />
+            android:layout_toRightOf="@id/bucket_image"
+            android:padding="@dimen/spacing_small"
+            android:layout_centerVertical="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/bucket_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                tools:text="Bucket name" />
+
+            <TextView
+                android:id="@+id/bucket_shot_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_xsmall"
+                tools:text="90 shots" />
+
+        </LinearLayout>
 
         <ImageView
             android:id="@+id/bucket_shot_chosen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/spacing_small"
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
+            android:layout_centerInParent="true"
+            android:scaleType="fitEnd"
             android:src="@drawable/ic_check_box_outline_blank_black_24dp" />
 
     </RelativeLayout>
 
-    <View
-        android:id="@+id/bucket_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="?attr/selectableItemBackground"/>
-
-</android.support.v7.widget.CardView>
+</FrameLayout>
 

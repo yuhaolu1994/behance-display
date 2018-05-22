@@ -84,6 +84,7 @@ public class CollectionAdapter extends InfiniteAdapter<Project> {
 
         @Override
         protected void onSuccess(ProjectDetail projectDetail) {
+            projectDetail.setBucketed(false);
             Intent intent = new Intent(getContext(), ProjectActivity.class);
             intent.putExtra(ProjectFragment.KEY_PROJECT,
                     ModelUtils.toString(projectDetail, new TypeToken<ProjectDetail>(){}));

@@ -41,6 +41,11 @@
             android:windowSoftInputMode="stateVisible"
             android:screenOrientation="portrait"/>
 
+        <activity android:name=".view.buckets_list.BucketListActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".view.bucket_projects.BucketProjectActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

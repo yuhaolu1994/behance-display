@@ -8,4 +8,5 @@
     <color name="black">#000000</color>
     <color name="tab_indicator_color">@android:color/white</color>
     <color name="place_holder_bg">#33000000</color>
+    <color name="bucket_item_bg">#5882FA</color>
 </resources>

@@ -34,7 +34,9 @@
     <string name="users">Artists</string>
     <string name="show_more_collections">See all collections</string>
     <string name="show_more_users">See all artists</string>
-    <string name="action_delete">Delete</string>
+    <string name="action_delete">DELETE</string>
+    <string name="bucket_activity_title">Choose buckets</string>
+    <string name="save">SAVE</string>
 
     <!-- TODO: Remove or change this placeholder text -->
 </resources>

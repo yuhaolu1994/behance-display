@@ -15,4 +15,6 @@
     <dimen name="creative_picture_radius">75dp</dimen>
     <dimen name="toolbar_height">64dp</dimen>
     <dimen name="toolbarMargin">8dp</dimen>
+    <dimen name="bucket_picture_size">75dp</dimen>
+    <dimen name="ic_delete">30dp</dimen>
 </resources>

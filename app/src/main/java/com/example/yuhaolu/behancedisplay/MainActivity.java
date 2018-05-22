@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
                                         .newInstance(cityName);
                                 break;
                             case R.id.action_buckets:
-                                fragment = BucketListFragment.newInstance();
+                                fragment = BucketListFragment.newInstance(false);
                                 break;
                         }
 
@@ -122,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
         String provider = locationManager.getBestProvider(criteria, true);
 
         Location location = locationManager.getLastKnownLocation(provider);
+
         // get address from latitude and longitude by Geocoder
         Geocoder geocoder = new Geocoder(getBaseContext(), Locale.getDefault());
         List<Address> addresses;

@@ -2,8 +2,10 @@ package com.example.yuhaolu.behancedisplay.view.project_detail;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -11,8 +13,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.yuhaolu.behancedisplay.R;
+import com.example.yuhaolu.behancedisplay.model.Bucket;
 import com.example.yuhaolu.behancedisplay.model.ProjectDetail;
 import com.example.yuhaolu.behancedisplay.utils.ImageUtils;
+import com.example.yuhaolu.behancedisplay.utils.ModelUtils;
+import com.example.yuhaolu.behancedisplay.view.buckets_list.BucketListActivity;
+import com.example.yuhaolu.behancedisplay.view.buckets_list.BucketListFragment;
+import com.google.gson.reflect.TypeToken;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProjectAdapter extends RecyclerView.Adapter {
 
@@ -25,6 +35,7 @@ public class ProjectAdapter extends RecyclerView.Adapter {
     public ProjectAdapter(@NonNull ProjectFragment projectFragment, @NonNull ProjectDetail projectDetail) {
         this.projectFragment = projectFragment;
         this.projectDetail = projectDetail;
+        projectDetail.bucketedName = new ArrayList<>();
     }
 
     @Override
@@ -75,10 +86,32 @@ public class ProjectAdapter extends RecyclerView.Adapter {
                     }
                 });
 
+                List<Bucket> buckets = ModelUtils.read(projectFragment.getContext(),
+                        BucketListFragment.CREATED_BUCKET, new TypeToken<List<Bucket>>(){});
+
+                if (buckets != null) {
+                    for (Bucket bucket : buckets) {
+                        for (ProjectDetail project : bucket.bucketProjects) {
+                            if (projectDetail.name.equals(project.name)) {
+                                projectDetail.bucketed = true;
+                                projectDetail.bucketedName.add(bucket.getBucketName());
+                            }
+                        }
+                    }
+                }
+
+                if (projectDetail.bucketed) {
+                    projectDetailViewHolder.bucket.setCompoundDrawablesWithIntrinsicBounds(
+                            0, R.drawable.ic_inbox_blue_900_24dp, 0, 0);
+                } else {
+                    projectDetailViewHolder.bucket.setCompoundDrawablesWithIntrinsicBounds(
+                            0, R.drawable.ic_inbox_black_24dp, 0, 0);
+                }
+
                 projectDetailViewHolder.bucket.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-
+                        projectFragment.bucket();
                     }
                 });
 
@@ -103,4 +136,8 @@ public class ProjectAdapter extends RecyclerView.Adapter {
         return projectFragment.getContext();
     }
 
+    public void setProjectBucketed() {
+        projectDetail.setBucketed(true);
+        notifyDataSetChanged();
+    }
 }

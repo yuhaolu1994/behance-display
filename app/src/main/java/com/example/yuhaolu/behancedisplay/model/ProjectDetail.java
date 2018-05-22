@@ -37,4 +37,12 @@ public class ProjectDetail {
     @SerializedName("url")
     @Expose
     public String url;
+
+    public boolean bucketed;
+
+    public List<String> bucketedName;
+
+    public void setBucketed(boolean bucketed) {
+        this.bucketed = bucketed;
+    }
 }
