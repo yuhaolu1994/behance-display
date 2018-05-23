@@ -2,7 +2,6 @@ package com.example.yuhaolu.behancedisplay;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
-import android.content.res.ColorStateList;
 import android.location.Address;
 import android.location.Criteria;
 import android.location.Geocoder;
@@ -35,8 +34,8 @@ public class MainActivity extends AppCompatActivity {
 
     private Fragment fragment;
     private String cityName;
-
     private boolean locationFlag;
+    public static final String KEY_APP_USER = "app_user";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         setupBottomView();
-
 
         if (savedInstanceState == null) {
             fragment = HomeFragment.newInstance();

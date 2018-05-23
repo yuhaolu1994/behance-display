@@ -21,11 +21,7 @@
             android:windowSoftInputMode="adjustPan"
             android:theme="@style/AppTheme"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <activity
@@ -46,6 +42,19 @@
 
         <activity android:name=".view.bucket_projects.BucketProjectActivity"
             android:screenOrientation="portrait"/>
+
+        <activity android:name=".RegisterActivity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".LoginActivity"
+            android:screenOrientation="portrait">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>

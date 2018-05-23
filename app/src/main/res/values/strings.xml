@@ -37,6 +37,13 @@
     <string name="action_delete">DELETE</string>
     <string name="bucket_activity_title">Choose buckets</string>
     <string name="save">SAVE</string>
+    <string name="error_message_email">Enter Valid Email</string>
+    <string name="error_message_password">Enter Valid Password</string>
+    <string name="error_valid_email_password">Wrong Email or Password</string>
+    <string name="error_message_name">Enter Valid Name</string>
+    <string name="error_password_match">Password Does Not Matches</string>
+    <string name="success_message">Registration Successful</string>
+    <string name="error_email_exists">Email Already Exists</string>
 
     <!-- TODO: Remove or change this placeholder text -->
 </resources>
