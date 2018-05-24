@@ -125,9 +125,9 @@ public class BucketListFragment extends Fragment implements BucketListAdapter.Bu
                     new TypeToken<ProjectDetail>(){});
 
             for (int i = 0; i < buckets.size(); i++) {
-                final List<ProjectDetail> bucketProjects = buckets.get(i).bucketProjects;
+                List<ProjectDetail> bucketProjects = buckets.get(i).bucketProjects;
                 for (ProjectDetail project : bucketProjects) {
-                    if (project.name.equals(projectDetail.name)) {
+                    if (project.name.contentEquals(projectDetail.name)) {
                         buckets.get(i).setChoosing(true);
                     } else {
                         buckets.get(i).setChoosing(false);
