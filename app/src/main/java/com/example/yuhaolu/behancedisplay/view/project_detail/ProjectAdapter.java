@@ -140,4 +140,10 @@ public class ProjectAdapter extends RecyclerView.Adapter {
         projectDetail.setBucketed(true);
         notifyDataSetChanged();
     }
+
+    public void setProjectUnBucketed() {
+        projectDetail.setBucketed(false);
+        notifyDataSetChanged();
+    }
+
 }

@@ -35,6 +35,8 @@ import com.example.yuhaolu.behancedisplay.utils.DatabaseHelper;
 import com.example.yuhaolu.behancedisplay.utils.ModelUtils;
 import com.example.yuhaolu.behancedisplay.utils.RecyclerItemTouchHelper;
 import com.example.yuhaolu.behancedisplay.view.base.SpaceItemDecoration;
+import com.example.yuhaolu.behancedisplay.view.project_detail.ProjectAdapter;
+import com.example.yuhaolu.behancedisplay.view.project_detail.ProjectFragment;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
@@ -58,6 +60,7 @@ public class BucketListFragment extends Fragment implements BucketListAdapter.Bu
     public static final String KEY_CHOOSING_MODE = "choosing_mode";
     public static final String KEY_CHOSEN_BUCKETS_NAMES = "chosen_bucket_names";
     public static final String KEY_CHOSEN_PROJECT = "chosen_project_detail";
+    public static final String KEY_REMOVE_BUCKET_ID = "remove_bucket_ID";
     public static final String KEY_APP_USER = "app_user";
 
     private BucketListAdapter adapter;
@@ -67,8 +70,11 @@ public class BucketListFragment extends Fragment implements BucketListAdapter.Bu
     private boolean isChoosingMode;
     private ProjectDetail projectDetail;
     private List<Bucket> savedBuckets;
+    private int removeId;
+    private String removeBucketID;
     private AppUser user;
     private DatabaseHelper databaseHelper;
+
 
 //    public static BucketListFragment newInstance(boolean isChoosingMode, String appUser) {
 //        Bundle args = new Bundle();
@@ -119,24 +125,25 @@ public class BucketListFragment extends Fragment implements BucketListAdapter.Bu
 
 //        user = ModelUtils.toObject(getArguments().getString(KEY_APP_USER), new TypeToken<AppUser>(){});
 
+        adapter = new BucketListAdapter(view.getContext(), buckets, this, isChoosingMode);
+
         if (isChoosingMode) {
             toolbar.setVisibility(View.GONE);
-            projectDetail = ModelUtils.toObject(getActivity().getIntent().getExtras().getString(KEY_CHOSEN_PROJECT),
+            projectDetail = ModelUtils.toObject(getActivity().getIntent().getStringExtra(KEY_CHOSEN_PROJECT),
                     new TypeToken<ProjectDetail>(){});
 
+            // 进入收藏选择界面时显示已经收藏进的收藏夹
             for (int i = 0; i < buckets.size(); i++) {
                 List<ProjectDetail> bucketProjects = buckets.get(i).bucketProjects;
                 for (ProjectDetail project : bucketProjects) {
-                    if (project.name.contentEquals(projectDetail.name)) {
-                        buckets.get(i).setChoosing(true);
-                    } else {
-                        buckets.get(i).setChoosing(false);
+                    if (project.name.equals(projectDetail.name)) {
+                        adapter.setBucketChosen(i);
+                        break;
                     }
+                    adapter.setBucketUnChosen(i);
                 }
             }
         }
-
-        adapter = new BucketListAdapter(view.getContext(), buckets, this, isChoosingMode);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
@@ -179,14 +186,18 @@ public class BucketListFragment extends Fragment implements BucketListAdapter.Bu
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.save) {
+
             ArrayList<String> chosenBucketsNames = new ArrayList<>();
 
             boolean containInBucket = false;
 
             for (int i = 0; i < adapter.getBuckets().size(); i++) {
+                // 对于每个收藏夹进行一下判断
                 if (adapter.getBuckets().get(i).isChoosing) {
+                    // 记录被点击的收藏夹
                     String chosenBucketName = adapter.getBuckets().get(i).getBucketName();
                     chosenBucketsNames.add(chosenBucketName);
+                    // 判断是否已经在收藏夹中
                     if (!projectDetail.bucketedName.contains(chosenBucketName)) {
                         adapter.getBuckets().get(i).bucketProjects.add(projectDetail);
                     } else {
@@ -198,12 +209,43 @@ public class BucketListFragment extends Fragment implements BucketListAdapter.Bu
                     adapter.getBuckets().get(i).shotNum += 1;
                     adapter.saveData();
                     adapter.notifyDataSetChanged();
+                } else {
+                    // 不点击收藏移除已收藏项目
+                    // 获取未点击收藏夹的名字
+                    String chosenBucketName = adapter.getBuckets().get(i).getBucketName();
+                    // 判断收藏夹名字是否在projectDetail中
+                    if (projectDetail.bucketedName.contains(chosenBucketName)) {
+                        // 获取收藏夹中要移除的项目ID
+
+                        List<ProjectDetail> projects = adapter.getBuckets().get(i).bucketProjects;
+                        for (int j = 0; j < projects.size(); j++) {
+                            if (projects.get(j).name.equals(projectDetail.name)) {
+                                removeId = j;
+                                break;
+                            }
+                        }
+                        adapter.getBuckets().get(i).bucketProjects.remove(removeId);
+                        adapter.getBuckets().get(i).shotNum -= 1;
+                        adapter.saveData();
+                        adapter.notifyDataSetChanged();
+
+                        // 获取projectDetail中收藏夹ID
+                        for (int m = 0; m < projectDetail.bucketedName.size(); m++) {
+                            if (projectDetail.bucketedName.get(m).equals(chosenBucketName)) {
+                                removeBucketID = String.valueOf(m);
+                            }
+                        }
+                    }
                 }
             }
 
+            // 没有保存在已有收藏夹中
             if (!containInBucket) {
                 Intent result = new Intent();
                 result.putStringArrayListExtra(KEY_CHOSEN_BUCKETS_NAMES, chosenBucketsNames);
+                if (removeBucketID != null) {
+                    result.putExtra(KEY_REMOVE_BUCKET_ID, removeBucketID);
+                }
                 getActivity().setResult(Activity.RESULT_OK, result);
                 getActivity().finish();
             }

@@ -72,10 +72,20 @@ public class ProjectFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQ_CODE_BUCKET && resultCode == Activity.RESULT_OK) {
+            // 更改收藏按钮图标
             List<String> chosenBucketNames = data.getStringArrayListExtra(
                     BucketListFragment.KEY_CHOSEN_BUCKETS_NAMES);
             if (chosenBucketNames.size() != 0) {
                 adapter.setProjectBucketed();
+            } else {
+                adapter.setProjectUnBucketed();
+            }
+
+            // 处理更新的projectDetail中保存的bucketID
+            String removeBucketID = data.getStringExtra(BucketListFragment.KEY_REMOVE_BUCKET_ID);
+            if (removeBucketID != null) {
+                projectDetail.bucketedName.remove(Integer.parseInt(removeBucketID));
+                adapter.notifyDataSetChanged();
             }
         }
     }

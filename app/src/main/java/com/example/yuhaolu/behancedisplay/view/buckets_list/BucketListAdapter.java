@@ -155,4 +155,13 @@ public class BucketListAdapter extends RecyclerView.Adapter<BucketListViewHolder
         notifyDataSetChanged();
     }
 
+    public void setBucketChosen(int bucketID) {
+        buckets.get(bucketID).setChoosing(true);
+        notifyDataSetChanged();
+    }
+
+    public void setBucketUnChosen(int bucketID) {
+        buckets.get(bucketID).setChoosing(false);
+        notifyDataSetChanged();
+    }
 }
