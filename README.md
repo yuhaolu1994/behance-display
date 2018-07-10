@@ -1,5 +1,5 @@
 # BehanceDisplay
-![](https://github.com/yuhaolu1994/BehanceDisplay/blob/master/app/src/main/ic_launcher-web.png)
+![](https://github.com/yuhaolu1994/BehanceDisplay/blob/master/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png)
 
 ## Introduction
 A third party android app for the designer community Behance. This android app includes the home, discover, nearBy and buckets sections. Users can also login and register by their name and password. All the designer products are fetched through Behance API and the data of buckets is stored by android sharedPreferences. The detail of Behance API endpoint can be found here.
